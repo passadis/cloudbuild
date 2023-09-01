@@ -1,7 +1,7 @@
 steps:
 # Copy static content to the GCS bucket
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'cp', '-r', './webdir/*', 'gs://server09/']
+  args: ['-m', 'cp', '-r', './*', 'gs://server09/webdir']
 
 # (Optional) Make the content publicly accessible if it's a public website
 - name: 'gcr.io/cloud-builders/gsutil'
