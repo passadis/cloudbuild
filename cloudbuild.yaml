@@ -1,27 +1,11 @@
 steps:
-
-# 1. Create the bucket (this step will fail if the bucket already exists, but the build will continue)
+# Copy static content to the GCS bucket
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['mb', 'gs://server10']
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      gsutil mb gs://server10 || echo "Bucket already exists."
+  args: ['-m', 'cp', '-r', './static/*', 'gs://server108/']
 
-# 2. Configure the bucket for website hosting
+# (Optional) Make the content publicly accessible if it's a public website
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://server10']
+  args: ['acl', 'ch', '-r', '-u', 'AllUsers:R', 'gs://serevr108/*']
 
-# 3. Upload your website files
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', './index.html', 'gs://server10/']
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', './style.css', 'gs://server10/']
 
-# (You can add more files or use wildcards as needed)
-
-# 4. Make the uploaded files publicly accessible
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['iam', 'ch', 'allUsers:objectViewer', 'gs://server10']
 
