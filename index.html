@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+         <form action="https://us-east1-leader-demo-1-397014.cloudfunctions.net/function-web" method="post">
+		 <h1>Registration App</h1>
+            <label for="first-name">Your First Name</label>
+            <input type="text" id="first-name" name="first-name" required>
+            
+            <label for="last-name">Your Last Name</label>
+            <input type="text" id="last-name" name="last-name" required>
+            
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
